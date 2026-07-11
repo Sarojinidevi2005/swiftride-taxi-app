@@ -1,582 +1,503 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SwiftRide — Call Taxi Booking</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Phosphor Icons CDN -->
-    <script
-      src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"
-      defer
-    ></script>
-  </head>
-  <body>
-    <!-- ===== NAVBAR ===== -->
-    <nav class="navbar" id="navbar">
-      <div class="nav-container">
-        <a href="#home" class="nav-logo">
-          <span class="logo-icon"><i class="ph-fill ph-taxi"></i></span>
-          Swift<span>Ride</span>
-        </a>
-        <ul class="nav-menu" id="navMenu">
-          <li><a href="#home" class="nav-link active">Home</a></li>
-          <li><a href="#services" class="nav-link">Services</a></li>
-          <li><a href="#booking" class="nav-link">Booking</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-          <li><a href="#booking" class="nav-cta-btn">Book Now</a></li>
-        </ul>
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwiftRide — Call Taxi Booking</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
+</head>
+<body>
 
-    <!-- ===== HERO SECTION ===== -->
-    <section class="hero" id="home">
-      <div class="hero-overlay"></div>
-      <div class="hero-content fade-in">
-        <span class="hero-badge"
-          ><i class="ph ph-shield-check"></i> Trusted by 5,000+ riders</span
-        >
-        <h1>
-          Book Your Taxi<br /><span class="hero-highlight"
-            >Anytime, Anywhere</span
-          >
-        </h1>
-        <p class="hero-sub">
-          Safe, fast, and affordable rides at your fingertips.<br />Your
-          destination is just one tap away.
-        </p>
-        <div class="hero-buttons">
-          <a href="#booking" class="btn btn-primary"
-            ><i class="ph ph-car"></i> Book Now</a
-          >
-          <a href="#services" class="btn btn-outline"
-            ><i class="ph ph-play-circle"></i> Learn More</a
-          >
-        </div>
-        <div class="hero-stats">
-          <div class="h-stat"><strong>5K+</strong><span>Rides Daily</span></div>
-          <div class="h-divider"></div>
-          <div class="h-stat"><strong>100+</strong><span>Drivers</span></div>
-          <div class="h-divider"></div>
-          <div class="h-stat"><strong>50+</strong><span>Cities</span></div>
-        </div>
-      </div>
-      <!-- Decorative taxi illustration -->
-      <div class="hero-visual">
-        <div class="taxi-card">
-          <div class="taxi-icon-wrap"><i class="ph-fill ph-taxi"></i></div>
-          <div class="taxi-info">
-            <span class="tc-label">Your driver is nearby</span>
-            <span class="tc-name">Raj K. — ⭐ 4.9</span>
-            <div class="tc-eta">
-              <i class="ph ph-clock"></i> Arrives in <strong>3 min</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-icon"><i class="ph-fill ph-taxi"></i></span>
+        Swift<span>Ride</span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#booking" class="nav-link">Booking</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#planner" class="nav-link">Ride Planner</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="#booking" class="nav-cta-btn">Book Now</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
 
-    <!-- ===== SERVICES SECTION ===== -->
-    <section class="services" id="services">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-badge">What We Offer</span>
-          <h2>Our <span>Services</span></h2>
-          <p>
-            From city hops to cross-state journeys — we've got every ride
-            covered.
-          </p>
-        </div>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon"><i class="ph-fill ph-buildings"></i></div>
-            <h3>City Taxi</h3>
-            <p>
-              Quick, comfortable rides across the city with real-time tracking
-              and transparent pricing.
-            </p>
-            <a href="#booking" class="card-link"
-              >Book now <i class="ph ph-arrow-right"></i
-            ></a>
-          </div>
-          <div class="service-card featured">
-            <div class="service-badge-tag">Most Popular</div>
-            <div class="service-icon">
-              <i class="ph-fill ph-airplane-takeoff"></i>
-            </div>
-            <h3>Airport Transfer</h3>
-            <p>
-              Stress-free airport pickups and drops — always on schedule, with
-              flight monitoring.
-            </p>
-            <a href="#booking" class="card-link"
-              >Book now <i class="ph ph-arrow-right"></i
-            ></a>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="ph-fill ph-road-horizon"></i>
-            </div>
-            <h3>Outstation Trip</h3>
-            <p>
-              Long-distance rides with professional drivers who know every
-              route.
-            </p>
-            <a href="#booking" class="card-link"
-              >Book now <i class="ph ph-arrow-right"></i
-            ></a>
-          </div>
-          <div class="service-card">
-            <div class="service-icon"><i class="ph-fill ph-briefcase"></i></div>
-            <h3>Corporate Travel</h3>
-            <p>
-              Premium, punctual rides for business travelers — monthly billing
-              available.
-            </p>
-            <a href="#booking" class="card-link"
-              >Book now <i class="ph ph-arrow-right"></i
-            ></a>
-          </div>
-        </div>
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-content fade-in">
+      <span class="hero-badge"><i class="ph ph-shield-check"></i> Trusted by 5,000+ riders</span>
+      <h1>Book Your Taxi<br /><span class="hero-highlight">Anytime, Anywhere</span></h1>
+      <p class="hero-sub">Safe, fast, and affordable rides at your fingertips.<br />Your destination is just one tap away.</p>
+      <div class="hero-buttons">
+        <a href="#booking" class="btn btn-primary"><i class="ph ph-car"></i> Book Now</a>
+        <a href="#services" class="btn btn-outline"><i class="ph ph-play-circle"></i> Learn More</a>
       </div>
-    </section>
-
-    <!-- ===== BOOKING SECTION ===== -->
-    <section class="booking" id="booking">
-      <div class="container">
-        <div class="booking-wrapper">
-          <div class="booking-info">
-            <span class="section-badge">Reserve a Ride</span>
-            <h2>Book Your <span>Taxi</span> Now</h2>
-            <p>
-              Fill in the details below and your driver will be assigned
-              instantly. We'll confirm within 2 minutes.
-            </p>
-            <ul class="booking-perks">
-              <li>
-                <i class="ph-fill ph-check-circle"></i> No cancellation fee
-                within 5 minutes
-              </li>
-              <li>
-                <i class="ph-fill ph-check-circle"></i> Real-time GPS tracking
-              </li>
-              <li>
-                <i class="ph-fill ph-check-circle"></i> Transparent fare — no
-                hidden charges
-              </li>
-              <li>
-                <i class="ph-fill ph-check-circle"></i> Driver contact shared
-                immediately
-              </li>
-            </ul>
-          </div>
-          <div class="booking-form-card">
-            <form id="bookingForm" novalidate>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="fullName"
-                    ><i class="ph ph-user"></i> Full Name</label
-                  >
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    placeholder="e.g. Arjun Sharma"
-                  />
-                  <span class="error-msg" id="nameErr"
-                    >Please enter your full name.</span
-                  >
-                </div>
-                <div class="form-group">
-                  <label for="phone"
-                    ><i class="ph ph-phone"></i> Phone Number</label
-                  >
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    placeholder="e.g. 9876543210"
-                  />
-                  <span class="error-msg" id="phoneErr"
-                    >Please enter a valid phone number.</span
-                  >
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="pickup"
-                    ><i class="ph ph-map-pin"></i> Pickup Location</label
-                  >
-                  <input
-                    type="text"
-                    id="pickup"
-                    name="pickup"
-                    placeholder="Enter pickup address"
-                  />
-                  <span class="error-msg" id="pickupErr"
-                    >Please enter pickup location.</span
-                  >
-                </div>
-                <div class="form-group">
-                  <label for="drop"
-                    ><i class="ph ph-navigation-arrow"></i> Drop Location</label
-                  >
-                  <input
-                    type="text"
-                    id="drop"
-                    name="drop"
-                    placeholder="Enter drop address"
-                  />
-                  <span class="error-msg" id="dropErr"
-                    >Please enter drop location.</span
-                  >
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="rideDate"
-                    ><i class="ph ph-calendar"></i> Date</label
-                  >
-                  <input type="date" id="rideDate" name="rideDate" />
-                  <span class="error-msg" id="dateErr"
-                    >Please select a date.</span
-                  >
-                </div>
-                <div class="form-group">
-                  <label for="rideTime"><i class="ph ph-clock"></i> Time</label>
-                  <input type="time" id="rideTime" name="rideTime" />
-                  <span class="error-msg" id="timeErr"
-                    >Please select a time.</span
-                  >
-                </div>
-              </div>
-              <div class="form-group full">
-                <label for="taxiType"
-                  ><i class="ph ph-car"></i> Taxi Type</label
-                >
-                <select id="taxiType" name="taxiType">
-                  <option value="">— Select a vehicle —</option>
-                  <option value="Mini">Mini (up to 4 pax) — ₹9/km</option>
-                  <option value="Sedan">Sedan (up to 4 pax) — ₹12/km</option>
-                  <option value="SUV">SUV (up to 6 pax) — ₹18/km</option>
-                </select>
-                <span class="error-msg" id="typeErr"
-                  >Please select a taxi type.</span
-                >
-              </div>
-              <button
-                type="submit"
-                class="btn btn-primary btn-full"
-                id="bookBtn"
-              >
-                <i class="ph ph-car-simple"></i> Confirm Booking
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== WHY CHOOSE US ===== -->
-    <section class="why-us" id="about">
-      <div class="container">
-        <div class="section-header light">
-          <span class="section-badge">Why SwiftRide</span>
-          <h2>Why Thousands <span>Choose Us</span></h2>
-          <p>
-            We're not just a taxi service — we're a commitment to getting you
-            there safely, every time.
-          </p>
-        </div>
-        <div class="why-grid">
-          <div class="why-card">
-            <div class="why-icon"><i class="ph-fill ph-user-check"></i></div>
-            <h3>Professional Drivers</h3>
-            <p>
-              Background-verified, trained, and rated by thousands of riders
-              every week.
-            </p>
-          </div>
-          <div class="why-card">
-            <div class="why-icon">
-              <i class="ph-fill ph-clock-countdown"></i>
-            </div>
-            <h3>24/7 Availability</h3>
-            <p>
-              Day or night, weekday or holiday — a driver is always ready for
-              you.
-            </p>
-          </div>
-          <div class="why-card">
-            <div class="why-icon"><i class="ph-fill ph-tag"></i></div>
-            <h3>Affordable Pricing</h3>
-            <p>
-              No surge pricing, no hidden fees. Flat rates you can see before
-              you book.
-            </p>
-          </div>
-          <div class="why-card">
-            <div class="why-icon"><i class="ph-fill ph-shield-check"></i></div>
-            <h3>Safe Journey</h3>
-            <p>
-              Live trip sharing, SOS button, and 24/7 support for every ride.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== STATISTICS SECTION ===== -->
-    <section class="stats">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-item">
-            <span class="stat-number" data-target="5000">0</span>
-            <span class="stat-plus">+</span>
-            <span class="stat-label">Happy Customers</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number" data-target="100">0</span>
-            <span class="stat-plus">+</span>
-            <span class="stat-label">Expert Drivers</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number" data-target="24">0</span>
-            <span class="stat-plus">/7</span>
-            <span class="stat-label">Support Hours</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number" data-target="50">0</span>
-            <span class="stat-plus">+</span>
-            <span class="stat-label">Cities Covered</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== TESTIMONIALS ===== -->
-    <section class="testimonials">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-badge">Reviews</span>
-          <h2>What Riders <span>Say</span></h2>
-          <p>Real rides. Real people. Real reviews.</p>
-        </div>
-        <div class="testimonials-grid">
-          <div class="review-card">
-            <div class="review-top">
-              <div
-                class="reviewer-avatar"
-                style="background: #ffd700; color: #111827"
-              >
-                A
-              </div>
-              <div>
-                <strong>Ananya R.</strong>
-                <span class="review-loc"
-                  ><i class="ph ph-map-pin"></i> Chennai</span
-                >
-              </div>
-            </div>
-            <div class="stars">★★★★★</div>
-            <p>
-              "Booked an airport transfer at 4 AM — driver was already there 10
-              minutes early. The car was spotless and the ride was super smooth.
-              Will always use SwiftRide!"
-            </p>
-          </div>
-          <div class="review-card featured-review">
-            <div class="review-top">
-              <div
-                class="reviewer-avatar"
-                style="background: #00c2ff; color: #fff"
-              >
-                M
-              </div>
-              <div>
-                <strong>Mohammed K.</strong>
-                <span class="review-loc"
-                  ><i class="ph ph-map-pin"></i> Bangalore</span
-                >
-              </div>
-            </div>
-            <div class="stars">★★★★★</div>
-            <p>
-              "Best corporate taxi service I've used. Monthly invoicing,
-              professional drivers, and the booking portal is so easy. My whole
-              team switched to SwiftRide."
-            </p>
-          </div>
-          <div class="review-card">
-            <div class="review-top">
-              <div
-                class="reviewer-avatar"
-                style="background: #111827; color: #ffd700"
-              >
-                P
-              </div>
-              <div>
-                <strong>Priya S.</strong>
-                <span class="review-loc"
-                  ><i class="ph ph-map-pin"></i> Hyderabad</span
-                >
-              </div>
-            </div>
-            <div class="stars">★★★★★</div>
-            <p>
-              "Took an outstation trip from Hyderabad to Tirupati. Comfortable
-              SUV, knowledgeable driver, and half the price of other services.
-              Absolutely recommended!"
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CONTACT SECTION ===== -->
-    <section class="contact" id="contact">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-badge">Get In Touch</span>
-          <h2>Contact <span>Us</span></h2>
-          <p>Have a question or need help with a booking? We're here 24/7.</p>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-card">
-            <div class="contact-icon">
-              <i class="ph-fill ph-phone-call"></i>
-            </div>
-            <h4>Phone</h4>
-            <p>+91 98765 43210</p>
-            <p>+91 98765 43211</p>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon"><i class="ph-fill ph-envelope"></i></div>
-            <h4>Email</h4>
-            <p>support@swiftride.in</p>
-            <p>bookings@swiftride.in</p>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon"><i class="ph-fill ph-map-pin"></i></div>
-            <h4>Address</h4>
-            <p>42, Anna Salai, Teynampet,<br />Chennai — 600 018, Tamil Nadu</p>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon">
-              <i class="ph-fill ph-share-network"></i>
-            </div>
-            <h4>Follow Us</h4>
-            <div class="social-icons">
-              <a href="#" class="social-btn" aria-label="Facebook"
-                ><i class="ph-fill ph-facebook-logo"></i
-              ></a>
-              <a href="#" class="social-btn" aria-label="Instagram"
-                ><i class="ph-fill ph-instagram-logo"></i
-              ></a>
-              <a href="#" class="social-btn" aria-label="Twitter"
-                ><i class="ph-fill ph-twitter-logo"></i
-              ></a>
-              <a href="#" class="social-btn" aria-label="WhatsApp"
-                ><i class="ph-fill ph-whatsapp-logo"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col brand-col">
-            <a href="#home" class="nav-logo footer-logo">
-              <span class="logo-icon"><i class="ph-fill ph-taxi"></i></span>
-              Swift<span>Ride</span>
-            </a>
-            <p>
-              Your city's most trusted call taxi service. Safe, fast, and always
-              on time — wherever you need to go.
-            </p>
-            <div class="footer-social">
-              <a href="#" aria-label="Facebook"
-                ><i class="ph-fill ph-facebook-logo"></i
-              ></a>
-              <a href="#" aria-label="Instagram"
-                ><i class="ph-fill ph-instagram-logo"></i
-              ></a>
-              <a href="#" aria-label="Twitter"
-                ><i class="ph-fill ph-twitter-logo"></i
-              ></a>
-              <a href="#" aria-label="WhatsApp"
-                ><i class="ph-fill ph-whatsapp-logo"></i
-              ></a>
-            </div>
-          </div>
-          <div class="footer-col">
-            <h5>Quick Links</h5>
-            <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#booking">Booking</a></li>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h5>Our Services</h5>
-            <ul>
-              <li><a href="#booking">City Taxi</a></li>
-              <li><a href="#booking">Airport Transfer</a></li>
-              <li><a href="#booking">Outstation Trip</a></li>
-              <li><a href="#booking">Corporate Travel</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h5>Contact Info</h5>
-            <ul class="footer-contact-list">
-              <li><i class="ph ph-phone"></i> +91 98765 43210</li>
-              <li><i class="ph ph-envelope"></i> support@swiftride.in</li>
-              <li><i class="ph ph-map-pin"></i> 42, Anna Salai, Chennai</li>
-              <li><i class="ph ph-clock"></i> 24 / 7 Available</li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>© 2025 SwiftRide Call Taxi. All rights reserved.</p>
-          <p>
-            Designed with
-            <i class="ph-fill ph-heart" style="color: #ffd700"></i> for every
-            rider.
-          </p>
-        </div>
-      </div>
-    </footer>
-
-    <!-- ===== SCROLL TO TOP ===== -->
-    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-      <i class="ph ph-arrow-up"></i>
-    </button>
-
-    <!-- ===== SUCCESS TOAST ===== -->
-    <div class="toast" id="toast">
-      <i class="ph-fill ph-check-circle"></i>
-      <div>
-        <strong>Booking Confirmed!</strong>
-        <span>Your driver will contact you shortly.</span>
+      <div class="hero-stats">
+        <div class="h-stat"><strong>5K+</strong><span>Rides Daily</span></div>
+        <div class="h-divider"></div>
+        <div class="h-stat"><strong>100+</strong><span>Drivers</span></div>
+        <div class="h-divider"></div>
+        <div class="h-stat"><strong>50+</strong><span>Cities</span></div>
       </div>
     </div>
+    <!-- Decorative taxi illustration -->
+    <div class="hero-visual">
+      <div class="taxi-card">
+        <div class="taxi-icon-wrap"><i class="ph-fill ph-taxi"></i></div>
+        <div class="taxi-info">
+          <span class="tc-label">Your driver is nearby</span>
+          <span class="tc-name">Raj K. — ⭐ 4.9</span>
+          <div class="tc-eta"><i class="ph ph-clock"></i> Arrives in <strong>3 min</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
-  </body>
+  <!-- ===== SERVICES SECTION ===== -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">What We Offer</span>
+        <h2>Our <span>Services</span></h2>
+        <p>From city hops to cross-state journeys — we've got every ride covered.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="ph-fill ph-buildings"></i></div>
+          <h3>City Taxi</h3>
+          <p>Quick, comfortable rides across the city with real-time tracking and transparent pricing.</p>
+          <a href="#booking" class="card-link">Book now <i class="ph ph-arrow-right"></i></a>
+        </div>
+        <div class="service-card featured">
+          <div class="service-badge-tag">Most Popular</div>
+          <div class="service-icon"><i class="ph-fill ph-airplane-takeoff"></i></div>
+          <h3>Airport Transfer</h3>
+          <p>Stress-free airport pickups and drops — always on schedule, with flight monitoring.</p>
+          <a href="#booking" class="card-link">Book now <i class="ph ph-arrow-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ph-fill ph-road-horizon"></i></div>
+          <h3>Outstation Trip</h3>
+          <p>Long-distance rides with professional drivers who know every route.</p>
+          <a href="#booking" class="card-link">Book now <i class="ph ph-arrow-right"></i></a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="ph-fill ph-briefcase"></i></div>
+          <h3>Corporate Travel</h3>
+          <p>Premium, punctual rides for business travelers — monthly billing available.</p>
+          <a href="#booking" class="card-link">Book now <i class="ph ph-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING SECTION ===== -->
+  <section class="booking" id="booking">
+    <div class="container">
+      <div class="booking-wrapper">
+        <div class="booking-info">
+          <span class="section-badge">Reserve a Ride</span>
+          <h2>Book Your <span>Taxi</span> Now</h2>
+          <p>Fill in the details below and your driver will be assigned instantly. We'll confirm within 2 minutes.</p>
+          <ul class="booking-perks">
+            <li><i class="ph-fill ph-check-circle"></i> No cancellation fee within 5 minutes</li>
+            <li><i class="ph-fill ph-check-circle"></i> Real-time GPS tracking</li>
+            <li><i class="ph-fill ph-check-circle"></i> Transparent fare — no hidden charges</li>
+            <li><i class="ph-fill ph-check-circle"></i> Driver contact shared immediately</li>
+          </ul>
+        </div>
+        <div class="booking-form-card">
+          <form id="bookingForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName"><i class="ph ph-user"></i> Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="e.g. Arjun Sharma" />
+                <span class="error-msg" id="nameErr">Please enter your full name.</span>
+              </div>
+              <div class="form-group">
+                <label for="phone"><i class="ph ph-phone"></i> Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="e.g. 9876543210" />
+                <span class="error-msg" id="phoneErr">Please enter a valid phone number.</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="pickup"><i class="ph ph-map-pin"></i> Pickup Location</label>
+                <input type="text" id="pickup" name="pickup" placeholder="Enter pickup address" />
+                <span class="error-msg" id="pickupErr">Please enter pickup location.</span>
+              </div>
+              <div class="form-group">
+                <label for="drop"><i class="ph ph-navigation-arrow"></i> Drop Location</label>
+                <input type="text" id="drop" name="drop" placeholder="Enter drop address" />
+                <span class="error-msg" id="dropErr">Please enter drop location.</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="rideDate"><i class="ph ph-calendar"></i> Date</label>
+                <input type="date" id="rideDate" name="rideDate" />
+                <span class="error-msg" id="dateErr">Please select a date.</span>
+              </div>
+              <div class="form-group">
+                <label for="rideTime"><i class="ph ph-clock"></i> Time</label>
+                <input type="time" id="rideTime" name="rideTime" />
+                <span class="error-msg" id="timeErr">Please select a time.</span>
+              </div>
+            </div>
+            <div class="form-group full">
+              <label for="taxiType"><i class="ph ph-car"></i> Taxi Type</label>
+              <select id="taxiType" name="taxiType">
+                <option value="">— Select a vehicle —</option>
+                <option value="Mini">Mini (up to 4 pax) — ₹9/km</option>
+                <option value="Sedan">Sedan (up to 4 pax) — ₹12/km</option>
+                <option value="SUV">SUV (up to 6 pax) — ₹18/km</option>
+              </select>
+              <span class="error-msg" id="typeErr">Please select a taxi type.</span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="bookBtn">
+              <i class="ph ph-car-simple"></i> Confirm Booking
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY CHOOSE US ===== -->
+  <section class="why-us" id="about">
+    <div class="container">
+      <div class="section-header light">
+        <span class="section-badge">Why SwiftRide</span>
+        <h2>Why Thousands <span>Choose Us</span></h2>
+        <p>We're not just a taxi service — we're a commitment to getting you there safely, every time.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon"><i class="ph-fill ph-user-check"></i></div>
+          <h3>Professional Drivers</h3>
+          <p>Background-verified, trained, and rated by thousands of riders every week.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="ph-fill ph-clock-countdown"></i></div>
+          <h3>24/7 Availability</h3>
+          <p>Day or night, weekday or holiday — a driver is always ready for you.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="ph-fill ph-tag"></i></div>
+          <h3>Affordable Pricing</h3>
+          <p>No surge pricing, no hidden fees. Flat rates you can see before you book.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="ph-fill ph-shield-check"></i></div>
+          <h3>Safe Journey</h3>
+          <p>Live trip sharing, SOS button, and 24/7 support for every ride.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATISTICS SECTION ===== -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number" data-target="5000">0</span>
+          <span class="stat-plus">+</span>
+          <span class="stat-label">Happy Customers</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="100">0</span>
+          <span class="stat-plus">+</span>
+          <span class="stat-label">Expert Drivers</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="24">0</span>
+          <span class="stat-plus">/7</span>
+          <span class="stat-label">Support Hours</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="50">0</span>
+          <span class="stat-plus">+</span>
+          <span class="stat-label">Cities Covered</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Reviews</span>
+        <h2>What Riders <span>Say</span></h2>
+        <p>Real rides. Real people. Real reviews.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="review-card">
+          <div class="review-top">
+            <div class="reviewer-avatar" style="background:#FFD700;color:#111827;">A</div>
+            <div>
+              <strong>Ananya R.</strong>
+              <span class="review-loc"><i class="ph ph-map-pin"></i> Chennai</span>
+            </div>
+          </div>
+          <div class="stars">★★★★★</div>
+          <p>"Booked an airport transfer at 4 AM — driver was already there 10 minutes early. The car was spotless and the ride was super smooth. Will always use SwiftRide!"</p>
+        </div>
+        <div class="review-card featured-review">
+          <div class="review-top">
+            <div class="reviewer-avatar" style="background:#00C2FF;color:#fff;">M</div>
+            <div>
+              <strong>Mohammed K.</strong>
+              <span class="review-loc"><i class="ph ph-map-pin"></i> Bangalore</span>
+            </div>
+          </div>
+          <div class="stars">★★★★★</div>
+          <p>"Best corporate taxi service I've used. Monthly invoicing, professional drivers, and the booking portal is so easy. My whole team switched to SwiftRide."</p>
+        </div>
+        <div class="review-card">
+          <div class="review-top">
+            <div class="reviewer-avatar" style="background:#111827;color:#FFD700;">P</div>
+            <div>
+              <strong>Priya S.</strong>
+              <span class="review-loc"><i class="ph ph-map-pin"></i> Hyderabad</span>
+            </div>
+          </div>
+          <div class="stars">★★★★★</div>
+          <p>"Took an outstation trip from Hyderabad to Tirupati. Comfortable SUV, knowledgeable driver, and half the price of other services. Absolutely recommended!"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RIDE PLANNER SECTION ===== -->
+  <section class="planner" id="planner">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Plan Ahead</span>
+        <h2>Your <span>Ride Planner</span></h2>
+        <p>Jot down every ride you need to take this week — book them one tap at a time.</p>
+      </div>
+
+      <div class="planner-card" data-reveal>
+        <!-- Add Ride Task -->
+        <form class="planner-input-row" id="plannerForm" novalidate>
+          <span class="planner-input-icon"><i class="ph ph-map-pin-line"></i></span>
+          <input
+            type="text"
+            id="rideTaskInput"
+            placeholder="e.g. Book airport pickup for Monday, 6 AM"
+            maxlength="120"
+            autocomplete="off"
+          />
+          <button type="submit" class="btn btn-primary" id="addRideTaskBtn">
+            <i class="ph ph-plus"></i> Add Ride
+          </button>
+        </form>
+        <span class="error-msg" id="plannerErr">Please enter a ride task before adding.</span>
+
+        <!-- Counters -->
+        <div class="planner-stats">
+          <div class="planner-stat">
+            <i class="ph-fill ph-list-checks"></i>
+            <span>Total Rides: <strong id="totalRideCount">0</strong></span>
+          </div>
+          <div class="planner-stat">
+            <i class="ph-fill ph-hourglass-medium"></i>
+            <span>Pending: <strong id="pendingRideCount">0</strong></span>
+          </div>
+          <div class="planner-stat">
+            <i class="ph-fill ph-check-circle"></i>
+            <span>Completed: <strong id="completedRideCount">0</strong></span>
+          </div>
+        </div>
+
+        <!-- Ride Task List -->
+        <ul class="planner-list" id="rideTaskList"></ul>
+
+        <!-- Empty State -->
+        <div class="planner-empty" id="plannerEmpty">
+          <i class="ph ph-taxi"></i>
+          <p>No rides planned yet. Add your first ride task above!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Get In Touch</span>
+        <h2>Contact <span>Us</span></h2>
+        <p>Have a question or need help with a booking? We're here 24/7.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon"><i class="ph-fill ph-phone-call"></i></div>
+          <h4>Phone</h4>
+          <p>+91 98765 43210</p>
+          <p>+91 98765 43211</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><i class="ph-fill ph-envelope"></i></div>
+          <h4>Email</h4>
+          <p>support@swiftride.in</p>
+          <p>bookings@swiftride.in</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><i class="ph-fill ph-map-pin"></i></div>
+          <h4>Address</h4>
+          <p>42, Anna Salai, Teynampet,<br />Chennai — 600 018, Tamil Nadu</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><i class="ph-fill ph-share-network"></i></div>
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="ph-fill ph-facebook-logo"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a>
+            <a href="#" class="social-btn" aria-label="Twitter"><i class="ph-fill ph-twitter-logo"></i></a>
+            <a href="#" class="social-btn" aria-label="WhatsApp"><i class="ph-fill ph-whatsapp-logo"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-wrapper">
+        <div class="contact-form-info">
+          <span class="section-badge">Send a Message</span>
+          <h3>Need Help With <span>Something?</span></h3>
+          <p>Whether it's a booking issue, a lost item, or feedback about your ride — drop us a message and our support team will get back to you within a few hours.</p>
+          <ul class="booking-perks">
+            <li><i class="ph-fill ph-check-circle"></i> Fast, human support — no bots</li>
+            <li><i class="ph-fill ph-check-circle"></i> Average reply time under 2 hours</li>
+            <li><i class="ph-fill ph-check-circle"></i> Available in English &amp; Tamil</li>
+          </ul>
+        </div>
+
+        <div class="booking-form-card contact-form-card">
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName"><i class="ph ph-user"></i> Full Name</label>
+                <input type="text" id="contactName" name="contactName" placeholder="e.g. Arjun Sharma" />
+                <span class="error-msg" id="contactNameErr">Please enter your full name.</span>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail"><i class="ph ph-envelope-simple"></i> Email Address</label>
+                <input type="email" id="contactEmail" name="contactEmail" placeholder="e.g. arjun@email.com" />
+                <span class="error-msg" id="contactEmailErr">Please enter a valid email address.</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactPhone"><i class="ph ph-phone"></i> Phone Number</label>
+                <input type="tel" id="contactPhone" name="contactPhone" placeholder="e.g. 9876543210" inputmode="numeric" />
+                <span class="error-msg" id="contactPhoneErr">Phone must contain at least 10 digits.</span>
+              </div>
+              <div class="form-group">
+                <label for="contactSubject"><i class="ph ph-chat-text"></i> Subject</label>
+                <input type="text" id="contactSubject" name="contactSubject" placeholder="e.g. Refund for cancelled ride" />
+                <span class="error-msg" id="contactSubjectErr">Please enter a subject.</span>
+              </div>
+            </div>
+            <div class="form-group full">
+              <label for="contactMessage"><i class="ph ph-note-pencil"></i> Message</label>
+              <textarea id="contactMessage" name="contactMessage" rows="4" placeholder="Tell us more about your query..."></textarea>
+              <span class="error-msg" id="contactMessageErr">Please enter a message.</span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="contactSubmitBtn">
+              <i class="ph ph-paper-plane-tilt"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <a href="#home" class="nav-logo footer-logo">
+            <span class="logo-icon"><i class="ph-fill ph-taxi"></i></span>
+            Swift<span>Ride</span>
+          </a>
+          <p>Your city's most trusted call taxi service. Safe, fast, and always on time — wherever you need to go.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="ph-fill ph-facebook-logo"></i></a>
+            <a href="#" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a>
+            <a href="#" aria-label="Twitter"><i class="ph-fill ph-twitter-logo"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="ph-fill ph-whatsapp-logo"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#booking">Booking</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#planner">Ride Planner</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Our Services</h5>
+          <ul>
+            <li><a href="#booking">City Taxi</a></li>
+            <li><a href="#booking">Airport Transfer</a></li>
+            <li><a href="#booking">Outstation Trip</a></li>
+            <li><a href="#booking">Corporate Travel</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact Info</h5>
+          <ul class="footer-contact-list">
+            <li><i class="ph ph-phone"></i> +91 98765 43210</li>
+            <li><i class="ph ph-envelope"></i> support@swiftride.in</li>
+            <li><i class="ph ph-map-pin"></i> 42, Anna Salai, Chennai</li>
+            <li><i class="ph ph-clock"></i> 24 / 7 Available</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 SwiftRide Call Taxi. All rights reserved.</p>
+        <p>Designed with <i class="ph-fill ph-heart" style="color:#FFD700"></i> for every rider.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCROLL TO TOP ===== -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <i class="ph ph-arrow-up"></i>
+  </button>
+
+  <!-- ===== SUCCESS TOAST (reused for booking, contact & ride planner) ===== -->
+  <div class="toast" id="toast">
+    <i class="ph-fill ph-check-circle" id="toastIcon"></i>
+    <div>
+      <strong id="toastTitle">Booking Confirmed!</strong>
+      <span id="toastMsg">Your driver will contact you shortly.</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>

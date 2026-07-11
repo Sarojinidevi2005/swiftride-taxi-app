@@ -114,6 +114,7 @@ function addRevealClasses() {
     '.contact-card',
     '.booking-info',
     '.booking-form-card',
+    '.contact-form-info',
   ];
   revealTargets.forEach(selector => {
     document.querySelectorAll(selector).forEach((el, i) => {
@@ -139,11 +140,18 @@ function initReveal() {
 document.addEventListener('DOMContentLoaded', initReveal);
 
 
-/* ===== TOAST NOTIFICATION ===== */
-function showToast() {
+/* ===== TOAST NOTIFICATION (shared by all forms) ===== */
+/**
+ * Show the success toast with custom title/message text.
+ * Falls back to the default booking-confirmation copy if no args given.
+ */
+function showToast(title = 'Booking Confirmed!', message = 'Your driver will contact you shortly.') {
   const toast = document.getElementById('toast');
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastMsg').textContent = message;
   toast.classList.add('show');
-  setTimeout(() => {
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => {
     toast.classList.remove('show');
   }, 4000);
 }
@@ -266,4 +274,221 @@ const rideDateInput = document.getElementById('rideDate');
 if (rideDateInput) {
   const today = new Date().toISOString().split('T')[0];
   rideDateInput.setAttribute('min', today);
+}
+
+
+/* ============================================================
+   CONTACT FORM — validation, no alert(), success toast, reset
+   ============================================================ */
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+  const contactEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Phone: digits only, minimum 10 digits
+  function isValidContactPhone(val) {
+    const digitsOnly = val.replace(/\D/g, '');
+    return digitsOnly.length >= 10 && digitsOnly === val.replace(/\s+/g, '');
+  }
+
+  function isValidEmail(val) {
+    return contactEmailRegex.test(val);
+  }
+
+  // Strip non-numeric characters as the user types in the phone field
+  const contactPhoneField = document.getElementById('contactPhone');
+  contactPhoneField.addEventListener('input', () => {
+    contactPhoneField.value = contactPhoneField.value.replace(/[^\d]/g, '');
+  });
+
+  // Live validation — clear error as soon as the field becomes valid
+  const contactFieldMap = {
+    contactName: { err: 'contactNameErr' },
+    contactEmail: { err: 'contactEmailErr', check: isValidEmail },
+    contactPhone: { err: 'contactPhoneErr', check: isValidContactPhone },
+    contactSubject: { err: 'contactSubjectErr' },
+    contactMessage: { err: 'contactMessageErr' },
+  };
+
+  Object.keys(contactFieldMap).forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const { err, check } = contactFieldMap[id];
+    const clearIfValid = () => {
+      const val = el.value.trim();
+      const ok = val !== '' && (!check || check(val));
+      if (ok) {
+        el.classList.remove('error');
+        document.getElementById(err).classList.remove('show');
+      }
+    };
+    el.addEventListener('input', clearIfValid);
+    el.addEventListener('change', clearIfValid);
+  });
+
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const vName = validateField('contactName', 'contactNameErr');
+    const vEmail = validateField('contactEmail', 'contactEmailErr', isValidEmail);
+    const vPhone = validateField('contactPhone', 'contactPhoneErr', isValidContactPhone);
+    const vSubject = validateField('contactSubject', 'contactSubjectErr');
+    const vMessage = validateField('contactMessage', 'contactMessageErr');
+
+    if (!vName || !vEmail || !vPhone || !vSubject || !vMessage) {
+      const firstError = contactForm.querySelector('.error');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
+
+    // All valid — animate button, show success toast, reset form
+    const submitBtn = document.getElementById('contactSubmitBtn');
+    submitBtn.innerHTML = '<i class="ph ph-spinner"></i> Sending…';
+    submitBtn.disabled = true;
+
+    setTimeout(() => {
+      submitBtn.innerHTML = '<i class="ph ph-paper-plane-tilt"></i> Send Message';
+      submitBtn.disabled = false;
+      contactForm.reset();
+      showToast('Message Sent!', 'Our support team will get back to you shortly.');
+    }, 900);
+  });
+}
+
+
+/* ============================================================
+   RIDE PLANNER — add / delete / complete ride tasks + counters
+   ============================================================ */
+const plannerForm = document.getElementById('plannerForm');
+const rideTaskInput = document.getElementById('rideTaskInput');
+const rideTaskList = document.getElementById('rideTaskList');
+const plannerEmpty = document.getElementById('plannerEmpty');
+const plannerErr = document.getElementById('plannerErr');
+const totalRideCount = document.getElementById('totalRideCount');
+const pendingRideCount = document.getElementById('pendingRideCount');
+const completedRideCount = document.getElementById('completedRideCount');
+
+if (plannerForm) {
+  const STORAGE_KEY = 'swiftride_ride_tasks';
+
+  // In-memory list of ride tasks: { id, text, completed }
+  let rideTasks = loadRideTasks();
+
+  function loadRideTasks() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      return Array.isArray(saved) ? saved : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function saveRideTasks() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(rideTasks));
+    } catch {
+      /* localStorage unavailable — fail silently, list still works in-memory */
+    }
+  }
+
+  function updateCounters() {
+    const total = rideTasks.length;
+    const completed = rideTasks.filter(t => t.completed).length;
+    const pending = total - completed;
+    totalRideCount.textContent = total;
+    pendingRideCount.textContent = pending;
+    completedRideCount.textContent = completed;
+    plannerEmpty.classList.toggle('show', total === 0);
+    rideTaskList.style.display = total === 0 ? 'none' : 'flex';
+  }
+
+  function createRideTaskElement(task) {
+    const li = document.createElement('li');
+    li.className = 'planner-item' + (task.completed ? ' completed' : '');
+    li.dataset.id = task.id;
+
+    li.innerHTML = `
+      <button type="button" class="planner-check" aria-label="Mark ride as complete">
+        <i class="ph-fill ph-check"></i>
+      </button>
+      <span class="planner-text"></span>
+      <button type="button" class="planner-delete" aria-label="Delete ride task">
+        <i class="ph ph-trash"></i>
+      </button>
+    `;
+    // Set text via textContent to avoid any HTML injection from user input
+    li.querySelector('.planner-text').textContent = task.text;
+    return li;
+  }
+
+  function renderRideTasks() {
+    rideTaskList.innerHTML = '';
+    rideTasks.forEach(task => {
+      rideTaskList.appendChild(createRideTaskElement(task));
+    });
+    updateCounters();
+  }
+
+  function addRideTask(text) {
+    const trimmed = text.trim();
+    if (trimmed === '') {
+      plannerErr.classList.add('show');
+      rideTaskInput.classList.add('error');
+      return false;
+    }
+    plannerErr.classList.remove('show');
+    rideTaskInput.classList.remove('error');
+
+    rideTasks.push({
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+      text: trimmed,
+      completed: false,
+    });
+    saveRideTasks();
+    renderRideTasks();
+    return true;
+  }
+
+  // Add via form submit (covers both button click and Enter key)
+  plannerForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const added = addRideTask(rideTaskInput.value);
+    if (added) {
+      rideTaskInput.value = '';
+      rideTaskInput.focus();
+    }
+  });
+
+  // Clear inline error as soon as the user starts typing again
+  rideTaskInput.addEventListener('input', () => {
+    if (rideTaskInput.value.trim() !== '') {
+      plannerErr.classList.remove('show');
+      rideTaskInput.classList.remove('error');
+    }
+  });
+
+  // Event delegation for complete / delete buttons
+  rideTaskList.addEventListener('click', function (e) {
+    const item = e.target.closest('.planner-item');
+    if (!item) return;
+    const id = item.dataset.id;
+
+    if (e.target.closest('.planner-check')) {
+      const task = rideTasks.find(t => t.id === id);
+      if (task) {
+        task.completed = !task.completed;
+        saveRideTasks();
+        renderRideTasks();
+      }
+    } else if (e.target.closest('.planner-delete')) {
+      rideTasks = rideTasks.filter(t => t.id !== id);
+      saveRideTasks();
+      renderRideTasks();
+    }
+  });
+
+  // Initial render on page load
+  renderRideTasks();
 }
